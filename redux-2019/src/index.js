@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import faker from "faker";
 
+import ApprovalCard from "./components/ApprovalCard";
 import CommentDetail from "./components/CommentDetail";
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
                 comment={faker.lorem.sentence()}
                 postTime="6.20 PM"
             />
+            <ApprovalCard />
         </div>
     );
 };
