@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import Loader from "./components/Loader";
 import SeasonDisplay from "./components/SeasonDisplay";
 
 class App extends React.Component {
@@ -33,7 +34,7 @@ class App extends React.Component {
             return <div>Error: {this.state.errorMsg}</div>;
         }
 
-        return <div>Loading...</div>;
+        return <Loader loadingText="Please share location" />;
     }
 }
 
