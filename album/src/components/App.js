@@ -7,10 +7,14 @@ const container_style = {
 };
 
 class App extends Component {
+    onSearchSubmit(term) {
+        console.log(term);
+    }
+
     render() {
         return (
             <div className="ui container" style={container_style}>
-                <SearchBar />
+                <SearchBar onSearch={this.onSearchSubmit} />
             </div>
         );
     }

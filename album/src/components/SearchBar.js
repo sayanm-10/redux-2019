@@ -1,20 +1,29 @@
 import React, { Component } from "react";
 
 export default class SearchBar extends Component {
-    onInputChange(event) {
-        console.log(event.target.value);
-    }
+    state = {
+        term: ""
+    };
+
+    onFormSubmit = event => {
+        event.preventDefault();
+
+        this.props.onSearch(this.state.term);
+    };
 
     render() {
         return (
             <div className="ui segment">
-                <form action="" className="ui form">
+                <form onSubmit={this.onFormSubmit} className="ui form">
                     <div className="field">
                         <label htmlFor="search">Search</label>
                         <input
                             name="search"
                             type="text"
-                            onChange={this.onInputChange}
+                            value={this.state.term}
+                            onChange={e =>
+                                this.setState({ term: e.target.value })
+                            }
                         />
                     </div>
                 </form>
