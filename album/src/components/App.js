@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import SearchBar from "./SearchBar";
 
 const container_style = {
-    "margin-top": "10px"
+    marginTop: "10px"
 };
 
 class App extends Component {
