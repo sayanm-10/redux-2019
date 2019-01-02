@@ -5,14 +5,21 @@ import Loader from "./components/Loader";
 import SeasonDisplay from "./components/SeasonDisplay";
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
+    state = {
+        lat: null,
+        errorMsg: ""
+    };
 
-        this.state = {
-            lat: null,
-            errorMsg: ""
-        };
-    }
+    // ! Above state is equivalent to the constructor
+    // ! Hence, constructor is NOT mandatory
+    // constructor(props) {
+    //     super(props);
+
+    //     this.state = {
+    //         lat: null,
+    //         errorMsg: ""
+    //     };
+    // }
 
     componentDidMount() {
         window.navigator.geolocation.getCurrentPosition(
