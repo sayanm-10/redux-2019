@@ -9,6 +9,7 @@ export class SearchBar extends Component {
         event.preventDefault();
 
         // TODO: Call parent props method
+        this.props.onTermSearch(this.state.term);
     };
 
     render() {
