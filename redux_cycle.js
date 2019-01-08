@@ -1,5 +1,11 @@
 console.clear();
 
+/*
+* ACTIONS
+    An action is a payload of information that describes how the store should be updated. 
+    All actions should be objects, with a type field that indicates what the action type is.
+*/
+
 const createPolicy = (name, amt) => {
     return {
         type: "CREATE_POLICY",
@@ -31,6 +37,9 @@ const deletePolicy = name => {
 
 /*
  * REDUCERS
+    A reducer is a function that consumes actions, and generates a new state. 
+    Reducers are supposed to be pure, and should not actually generate non-pure data. 
+    ! When given an identical action, a reducer should return an identical state.
  */
 
 const claimsHistory = (oldClaims = [], action) => {
@@ -73,6 +82,13 @@ const store = createStore(departments);
 
 //const action = createPolicy('Alex', 20);
 //store.dispatch(action);
+
+/*
+* DISPATCH
+    The dispatcher takes actions and passes them through our reducers; 
+    the dispatcher takes the new state that is returned from the reducers and provides it to the store, 
+    which then performs our store's update.
+*/
 
 store.dispatch(createPolicy("Alex", 20));
 store.dispatch(createPolicy("Jim", 30));
