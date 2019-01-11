@@ -4,7 +4,7 @@ import { fetchPosts } from "../actions";
 
 import UserHeader from "./UserHeader";
 
-export class PostList extends Component {
+class PostList extends Component {
     componentDidMount() {
         this.props.fetchPosts();
     }

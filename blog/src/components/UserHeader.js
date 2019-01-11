@@ -2,15 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchUser } from "../actions";
 
-export class UserHeader extends Component {
+class UserHeader extends Component {
     componentDidMount() {
         this.props.fetchUser(this.props.userId);
     }
 
     render() {
-        const user = this.props.users.find(
-            user => user.id === this.props.userId
-        );
+        const { user } = this.props;
 
         if (!user) {
             return null;
@@ -20,8 +18,11 @@ export class UserHeader extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return { users: state.users };
+/*
+ * ownProps provides access to the components props object
+ */
+const mapStateToProps = (state, ownProps) => {
+    return { user: state.users.find(user => user.id === ownProps.userId) };
 };
 
 export default connect(
