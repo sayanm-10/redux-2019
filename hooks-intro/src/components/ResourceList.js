@@ -14,7 +14,16 @@ const ResourceList = props => {
 
     useEffect(
         () => {
-            fetchResources(props.resource);
+            (async resource => {
+                const response = await axios.get(
+                    `https://jsonplaceholder.typicode.com/${resource}`
+                );
+
+                setResources(response.data);
+            })(props.resource);
+
+            // ! Alternate to calling a separate function
+            //fetchResources(props.resource);
         },
         [props.resource]
     );
