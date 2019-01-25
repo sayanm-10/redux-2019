@@ -1,48 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import Loader from "./components/Loader";
 import SeasonDisplay from "./components/SeasonDisplay";
 
-class App extends React.Component {
-    state = {
-        lat: null,
-        errorMsg: ""
-    };
+const App = () => {
+    const [lat, setLat] = useState(null);
+    const [errorMsg, setErrorMsg] = useState("");
 
-    // ! Above state is equivalent to the constructor
-    // ! Hence, constructor is NOT mandatory
-    // constructor(props) {
-    //     super(props);
-
-    //     this.state = {
-    //         lat: null,
-    //         errorMsg: ""
-    //     };
-    // }
-
-    componentDidMount() {
+    useEffect(() => {
         window.navigator.geolocation.getCurrentPosition(
-            position => this.setState({ lat: position.coords.latitude }),
-            err => this.setState({ errorMsg: err.message })
+            position => setLat(position.coords.latitude),
+            err => setErrorMsg(err.message)
         );
+    }, []);
+
+    let content;
+    if (!lat && errorMsg) {
+        content = <div>Error: {errorMsg}</div>;
+    } else if (lat) {
+        content = <SeasonDisplay lat={lat} />;
+    } else {
+        content = <Loader loadingText="Please share location" />;
     }
 
-    render() {
-        if (this.state.lat) {
-            return (
-                <SeasonDisplay lat={this.state.lat}>
-                    Latitude: {this.state.lat}
-                </SeasonDisplay>
-            );
-        }
-
-        if (!this.state.lat && this.state.errorMsg) {
-            return <div>Error: {this.state.errorMsg}</div>;
-        }
-
-        return <Loader loadingText="Please share location" />;
-    }
-}
+    return <div className="border red">{content}</div>;
+};
 
 ReactDOM.render(<App />, document.querySelector("#root"));
